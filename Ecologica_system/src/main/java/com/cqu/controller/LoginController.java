@@ -19,7 +19,6 @@ public class LoginController {
     @Autowired
     private BackgroundUsersService backgroundUsersService;
 
-    //TODO
     @PostMapping
     public R<BackgroundUsers> login(HttpServletRequest request, @RequestBody BackgroundUsers backgroundUsers){
         //1.将页面提交的密码进行md5加密
