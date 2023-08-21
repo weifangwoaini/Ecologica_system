@@ -33,7 +33,7 @@ public class LoginController {
 
         //3.如果没有查询到username,表示没有此用户,此时返回登录失败
         if(emp == null){
-            return R.error("登录失败");
+            return R.error("此账号不存在");
         }
 
         //4.密码对比,如果不一致则返回登录失败结果
