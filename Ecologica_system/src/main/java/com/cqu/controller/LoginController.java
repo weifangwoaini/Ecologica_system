@@ -14,12 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController
 @ResponseBody
-@RequestMapping("/login")
+@RequestMapping
 public class LoginController {
     @Autowired
     private BackgroundUsersService backgroundUsersService;
 
-    @PostMapping
+    /**
+     *      登录功能
+     * @param request
+     * @param backgroundUsers
+     * @return
+     */
+    @PostMapping("/login")
     public R<BackgroundUsers> login(HttpServletRequest request, @RequestBody BackgroundUsers backgroundUsers){
         //1.将页面提交的密码进行md5加密
         String password = backgroundUsers.getPassword();
@@ -49,6 +55,19 @@ public class LoginController {
             request.getSession().setAttribute("backgroundUsers",emp.getId());
         return R.success(emp);
     }
+
+
+    /**
+     * 退出登录功能
+     */
+    @PostMapping("/logout")
+    public R<String> logout(HttpServletRequest request){
+        //清理session中保存的当前登录员工的id
+        request.getSession().removeAttribute("backgroundUsers");
+        return R.success("退出登陆成功");
+    }
+
+
 
 
 
